@@ -1,11 +1,13 @@
 import axios from "axios";
 
-const API_URL = (
-  import.meta.env.VITE_API_URL || "http://localhost:3000"
-).replace(/\/$/, "");
+const API_URL = import.meta.env.VITE_API_URL;
+
+if (!API_URL) {
+  throw new Error("VITE_API_URL belum diset di environment!");
+}
 
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: API_URL.replace(/\/$/, ""),
 });
 
 // 🔐 auto kirim token

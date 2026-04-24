@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 
 export default function PetunjukPenggunaan() {
   const { file } = PetunjukPenggunaanUser();
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   return (
     <>
@@ -29,7 +30,7 @@ export default function PetunjukPenggunaan() {
           <div className="flex items-center justify-center">
             {file ? (
               <iframe
-                src={`http://localhost:3000/${file.filepath}`}
+                src={`${BASE_URL}/${file.filepath}`}
                 className="w-full h-[600px]"
               />
             ) : (
