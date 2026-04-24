@@ -30,7 +30,7 @@ export default function PetunjukPenggunaan() {
           <div className="flex items-center justify-center">
             {file ? (
               <iframe
-                src={`${BASE_URL}/${file.filepath}`}
+                src={`${BASE_URL}/uploads/${file.filepath}`}
                 className="w-full h-[600px]"
               />
             ) : (
