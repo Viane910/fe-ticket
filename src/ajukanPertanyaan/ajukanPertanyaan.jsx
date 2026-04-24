@@ -135,6 +135,7 @@ export default function AjukanPertanyaan() {
                   name="name"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  required
                   placeholder="Nama Pengguna"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border"
                 />
@@ -152,6 +153,7 @@ export default function AjukanPertanyaan() {
                   name="email"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  required
                   placeholder="Email Aktif Pengguna"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border"
                 />
@@ -169,6 +171,7 @@ export default function AjukanPertanyaan() {
                 name="message"
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
+                required
                 rows="4"
                 placeholder="Tuliskan Pertanyaanmu disini..."
                 className="w-full px-4 py-3 rounded-lg bg-gray-50 border"
@@ -186,6 +189,7 @@ export default function AjukanPertanyaan() {
                 onChange={(e) =>
                   setForm({ ...form, categoryId: e.target.value })
                 }
+                required
                 className="w-full px-4 py-3 rounded-lg bg-gray-50 border"
               >
                 <option value="">Pilih Kategori</option>

@@ -9,7 +9,7 @@ export default function TicketingPertanyaanBisproController() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   // =========================
   // GET TICKETING (ONLY MY)
@@ -50,7 +50,7 @@ export default function TicketingPertanyaanBisproController() {
   const handleResponseSave = async (ticketId) => {
     const response = responseData[ticketId];
 
-    if (!response) {
+    if (!response || !response.trim()) {
       toast.error("Jawaban tidak boleh kosong");
       return;
     }
@@ -64,13 +64,6 @@ export default function TicketingPertanyaanBisproController() {
 
       toast.success("Jawaban berhasil dikirim!");
 
-      // update UI
-      setTicketing((prev) =>
-        prev.map((t) =>
-          t.id === ticketId ? { ...t, response, status: "Sudah Dijawab" } : t,
-        ),
-      );
-
       // 🔥 refresh dari backend
       await fetchTicketing();
 
@@ -78,7 +71,13 @@ export default function TicketingPertanyaanBisproController() {
         navigate("/ticketing/terjawab");
       }, 1500);
     } catch (err) {
-      console.error(err);
+      if (err.response?.data?.errors) {
+        err.response.data.errors.forEach((e) => {
+          toast.error(e.msg);
+        });
+      } else {
+        toast.error(err.response?.data?.message || "Gagal mengirim jawaban");
+      }
     } finally {
       setLoading(false);
     }
