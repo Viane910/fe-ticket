@@ -9,6 +9,9 @@ import { logoutUserController } from "../dashboardAdmin/loginController";
 // Controller
 import PetunjukPenggunaanAdminController from "./petunjukPenggunaanAdminController";
 
+// port
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 export default function PetunjukPenggunaanAdminDashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [previewFile, setPreviewFile] = useState(null);
@@ -261,7 +264,7 @@ export default function PetunjukPenggunaanAdminDashboard() {
               </h2>
 
               <iframe
-                src={`http://localhost:3000/${previewFile.filepath}`}
+                src={`${BASE_URL}/${previewFile.filepath}`}
                 className="w-full h-[300px] md:h-[600px] border rounded"
               />
             </div>
