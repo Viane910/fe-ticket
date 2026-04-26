@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import AsideDashboard from "../../components/asideDashboard";
@@ -26,6 +26,8 @@ export default function KelolaPertanyaan() {
   const [editingAssign, setEditingAssign] = useState({});
   const [expandedMessage, setExpandedMessage] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -47,10 +49,21 @@ export default function KelolaPertanyaan() {
     );
   });
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
   const menu =
     user?.role === "MASTER"
       ? DataMenuDashboardMaster
       : DataMenuDashboardAdminBispro;
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
 
   const handleLogOut = () => {
     logoutUserController();
@@ -126,19 +139,37 @@ export default function KelolaPertanyaan() {
               </thead>
 
               <tbody>
-                {filteredData.map((item, index) => (
+                {currentData.map((item, index) => (
                   <tr key={item.id} className="border-b hover:bg-gray-50">
-                    <td className="p-3">{index + 1}</td>
+                    <td className="p-3">{indexOfFirstItem + index + 1}</td>
                     <td className="p-3">{item.name}</td>
                     <td className="p-3 text-gray-600">{item.email}</td>
 
                     {/* MESSAGE */}
                     <td className="p-3 max-w-xs">
                       <p
-                        className={`${!expandedMessage[item.id] && "line-clamp-2"}`}
+                        className={`${
+                          !expandedMessage[item.id] && "line-clamp-2"
+                        }`}
                       >
                         {item.message}
                       </p>
+
+                      {item.message.split(" ").length > 20 && (
+                        <button
+                          onClick={() =>
+                            setExpandedMessage((prev) => ({
+                              ...prev,
+                              [item.id]: !prev[item.id],
+                            }))
+                          }
+                          className="text-blue-500 text-xs mt-1"
+                        >
+                          {expandedMessage[item.id]
+                            ? "Sembunyikan"
+                            : "Lihat selengkapnya"}
+                        </button>
+                      )}
                     </td>
 
                     {/* CATEGORY */}
@@ -265,7 +296,7 @@ export default function KelolaPertanyaan() {
 
           {/* MOBILE CARD */}
           <div className="md:hidden space-y-4">
-            {filteredData.map((item) => (
+            {currentData.map((item) => (
               <div
                 key={item.id}
                 className="bg-white p-4 rounded-xl shadow space-y-3"
@@ -277,7 +308,30 @@ export default function KelolaPertanyaan() {
                   </p>
                 </div>
 
-                <p className="text-sm text-gray-600">{item.message}</p>
+                <p
+                  className={`text-sm mt-2 ${
+                    !expandedMessage[item.id] && "line-clamp-2"
+                  }`}
+                >
+                  {item.message}
+                </p>
+
+                {item.message.split(" ").length > 20 && (
+                  <button
+                    onClick={() =>
+                      setExpandedMessage((prev) => ({
+                        ...prev,
+                        [item.id]: !prev[item.id],
+                      }))
+                    }
+                    className="text-blue-500 text-xs mt-1"
+                  >
+                    {expandedMessage[item.id]
+                      ? "Sembunyikan"
+                      : "Lihat selengkapnya"}
+                  </button>
+                )}
+
                 <div className="flex flex-wrap gap-2 text-xs mt-2">
                   <span
                     className={`px-3 py-1 rounded-full font-medium ${
@@ -389,6 +443,29 @@ export default function KelolaPertanyaan() {
                 Data tidak ditemukan
               </p>
             )}
+          </div>
+          <div className="flex justify-center items-center gap-2 mt-4">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+            >
+              Prev
+            </button>
+
+            <span className="text-sm">
+              Halaman {currentPage} dari {totalPages}
+            </span>
+
+            <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+              className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+            >
+              Next
+            </button>
           </div>
         </section>
       </main>
