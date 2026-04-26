@@ -28,20 +28,29 @@ export default function AjukanPertanyaanController() {
   }, []);
 
   const handleSubmit = async () => {
-    if (
-      !form.name.trim() ||
-      !form.email.trim() ||
-      !form.message.trim() ||
-      !form.categoryId
-    ) {
-      toast.error("Semua field wajib diisi");
+    if (!form.name.trim()) {
+      toast.error("Nama wajib diisi");
+      return;
+    }
+
+    if (!form.email.trim()) {
+      toast.error("Email wajib diisi");
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (!emailRegex.test(form.email)) {
       toast.error("Email tidak valid");
+      return;
+    }
+
+    if (!form.message.trim()) {
+      toast.error("Pertanyaan wajib diisi");
+      return;
+    }
+
+    if (!form.categoryId) {
+      toast.error("Kategori wajib dipilih");
       return;
     }
 

@@ -17,29 +17,61 @@ export default function PetunjukPenggunaanAdminController() {
   }, []);
 
   const handleUpload = async () => {
-    const formData = new FormData();
-    formData.append("file", newFile);
+    if (!newFile) {
+      alert("Pilih file dulu!");
+      return;
+    }
 
-    await api.post("/upload_file", formData);
-    fetchFiles();
+    try {
+      const formData = new FormData();
+      formData.append("file", newFile);
+
+      await api.post("/upload_file", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      setNewFile(null);
+      fetchFiles();
+    } catch (err) {
+      console.error(err.response?.data);
+      alert(err.response?.data?.message || "Upload gagal");
+    }
   };
 
   const handleDelete = async (id) => {
-    await api.delete(`/file/${id}`);
-    fetchFiles();
+    try {
+      await api.delete(`/file/${id}`);
+      fetchFiles();
+    } catch (err) {
+      console.error(err.response?.data);
+      alert(err.response?.data?.message || "Delete gagal");
+    }
   };
 
   const handleEdit = async () => {
-    await api.put(`/file/${editId}`, { filename: editFilename });
-    setEditId(null);
-    fetchFiles();
+    try {
+      await api.put(`/file/${editId}`, { filename: editFilename });
+      setEditId(null);
+      fetchFiles();
+    } catch (err) {
+      console.error(err.response?.data);
+      alert(err.response?.data?.message || "Edit gagal");
+    }
   };
 
   const setActiveFile = async (id) => {
-    await api.put(`/files/${id}/active`);
-    fetchFiles();
+    try {
+      await api.put(`/files/${id}/active`);
+      fetchFiles();
+    } catch (err) {
+      console.error(err.response?.data);
+      alert(err.response?.data?.message || "Gagal mengatur file sebagai aktif");
+    }
   };
 
+  // 🔥 RETURN HARUS DI DALAM FUNCTION
   return {
     files,
     newFile,

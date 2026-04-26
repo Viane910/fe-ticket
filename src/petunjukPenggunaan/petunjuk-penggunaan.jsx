@@ -27,16 +27,13 @@ export default function PetunjukPenggunaan() {
             Layanan Ticketing untuk User
           </h1>
           {/* PDF */}
-          <div className="flex items-center justify-center">
-            {file ? (
-              <iframe
-                src={`${BASE_URL}/uploads/${file.filepath}`}
-                className="w-full h-[600px]"
-              />
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
+          {file ? (
+            <iframe src={file.filepath} className="w-full h-[600px]" />
+          ) : (
+            <p className="text-red-500 font-semibold text-lg">
+              File belum tersedia
+            </p>
+          )}
         </div>
       </section>
       <Footer />

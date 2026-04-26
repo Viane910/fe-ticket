@@ -55,10 +55,7 @@ export default function PetunjukPenggunaanAdminDashboard() {
           >
             <svg
               className="w-8 h-8 text-[#261CC1]"
-              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -134,10 +131,7 @@ export default function PetunjukPenggunaanAdminDashboard() {
                         <button onClick={() => setPreviewFile(file)}>
                           <svg
                             className="w-6 h-6 text-blue-600 hover:text-blue-800"
-                            aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
                             fill="none"
                             viewBox="0 0 24 24"
                           >
@@ -155,23 +149,23 @@ export default function PetunjukPenggunaanAdminDashboard() {
                         </button>
 
                         {editId === file.id ? (
-                          <button onClick={handleEdit}>
-                            <svg
-                              className="w-6 h-6 text-lime-500 hover:text-lime-700"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M4 4a2 2 0 1 0 0 4h16a2 2 0 1 0 0-4H4Zm0 6h16v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8Zm10.707 5.707a1 1 0 0 0-1.414-1.414l-.293.293V12a1 1 0 1 0-2 0v2.586l-.293-.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l2-2Z"
-                                clip-rule="evenodd"
-                              />
-                            </svg>
-                          </button>
+                          <svg
+                            className="w-6 h-6 text-yellow-600 hover:text-yellow-800"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M11.32 6.176H5c-1.105 0-2 .949-2 2.118v10.588C3 20.052 3.895 21 5 21h11c1.105 0 2-.948 2-2.118v-7.75l-3.914 4.144A2.46 2.46 0 0 1 12.81 16l-2.681.568c-1.75.37-3.292-1.263-2.942-3.115l.536-2.839c.097-.512.335-.983.684-1.352l2.914-3.086Z"
+                            />
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M19.846 4.318a2.148 2.148 0 0 0-.437-.692 2.014 2.014 0 0 0-.654-.463 1.92 1.92 0 0 0-1.544 0 2.014 2.014 0 0 0-.654.463l-.546.578 2.852 3.02.546-.579a2.14 2.14 0 0 0 .437-.692 2.244 2.244 0 0 0 0-1.635ZM17.45 8.721 14.597 5.7 9.82 10.76a.54.54 0 0 0-.137.27l-.536 2.84c-.07.37.239.696.588.622l2.682-.567a.492.492 0 0 0 .255-.145l4.778-5.06Z"
+                            />
+                          </svg>
                         ) : (
                           <button
                             onClick={() => {
@@ -189,14 +183,14 @@ export default function PetunjukPenggunaanAdminDashboard() {
                               viewBox="0 0 24 24"
                             >
                               <path
-                                fill-rule="evenodd"
+                                fillRule="evenodd"
                                 d="M11.32 6.176H5c-1.105 0-2 .949-2 2.118v10.588C3 20.052 3.895 21 5 21h11c1.105 0 2-.948 2-2.118v-7.75l-3.914 4.144A2.46 2.46 0 0 1 12.81 16l-2.681.568c-1.75.37-3.292-1.263-2.942-3.115l.536-2.839c.097-.512.335-.983.684-1.352l2.914-3.086Z"
-                                clip-rule="evenodd"
+                                clipRule="evenodd"
                               />
                               <path
-                                fill-rule="evenodd"
+                                fillRule="evenodd"
                                 d="M19.846 4.318a2.148 2.148 0 0 0-.437-.692 2.014 2.014 0 0 0-.654-.463 1.92 1.92 0 0 0-1.544 0 2.014 2.014 0 0 0-.654.463l-.546.578 2.852 3.02.546-.579a2.14 2.14 0 0 0 .437-.692 2.244 2.244 0 0 0 0-1.635ZM17.45 8.721 14.597 5.7 9.82 10.76a.54.54 0 0 0-.137.27l-.536 2.84c-.07.37.239.696.588.622l2.682-.567a.492.492 0 0 0 .255-.145l4.778-5.06Z"
-                                clip-rule="evenodd"
+                                clipRule="evenodd"
                               />
                             </svg>
                           </button>
@@ -205,17 +199,14 @@ export default function PetunjukPenggunaanAdminDashboard() {
                         <button onClick={() => handleDelete(file.id)}>
                           <svg
                             className="w-6 h-6 text-red-600 hover:text-red-800"
-                            aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
                             fill="currentColor"
                             viewBox="0 0 24 24"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
+                              clipRule="evenodd"
                               d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z"
-                              clip-rule="evenodd"
                             />
                           </svg>
                         </button>
@@ -225,7 +216,7 @@ export default function PetunjukPenggunaanAdminDashboard() {
                           onClick={() => setActiveFile(file.id)}
                         >
                           <svg
-                            class="w-6 h-6 text-green-500"
+                            className="w-6 h-6 text-green-500"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -235,9 +226,9 @@ export default function PetunjukPenggunaanAdminDashboard() {
                           >
                             <path
                               stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
                               d="M10 3v4a1 1 0 0 1-1 1H5m4 6 2 2 4-4m4-8v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z"
                             />
                           </svg>
@@ -263,10 +254,7 @@ export default function PetunjukPenggunaanAdminDashboard() {
                 Preview: {previewFile.filename}
               </h2>
 
-              <iframe
-                src={`${BASE_URL}/${previewFile.filepath}`}
-                className="w-full h-[300px] md:h-[600px] border rounded"
-              />
+              <iframe src={previewFile.filepath} className="w-full h-[600px]" />
             </div>
           )}
         </section>

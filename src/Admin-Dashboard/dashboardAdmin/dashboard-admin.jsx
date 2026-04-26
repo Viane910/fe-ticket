@@ -118,7 +118,7 @@ export default function DashboardAdmin() {
               <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-semibold text-gray-700">
-                    Total Pertanyaan sedang Diproses
+                    Total Pertanyaan Belum Dikelola
                   </h3>
                   <div className="w-10 h-10 flex items-center justify-center bg-green-100 rounded-lg">
                     <svg

@@ -24,7 +24,17 @@ export default function DashboardAdminController() {
         },
       });
 
-      const myTickets = ticketRes.data.data;
+      const allTickets = ticketRes.data.data;
+
+      let myTickets = [];
+
+      if (user.role === "MASTER") {
+        // MASTER lihat semua
+        myTickets = allTickets;
+      } else {
+        // ADMIN lihat yang dia handle
+        myTickets = allTickets.filter((t) => t.assignedToId === user.id);
+      }
 
       const belum = myTickets.filter(
         (t) => t.status === "Belum Dikelola",
@@ -34,13 +44,9 @@ export default function DashboardAdminController() {
         (t) => t.status === "Sudah Dijawab",
       ).length;
 
-      const jawaban = myTickets.filter(
-        (t) => t.status === "Sudah Dijawab",
-      ).length;
-
-      setTotalJawaban(jawaban);
       setTotalBelum(belum);
       setTotalSudah(sudah);
+      setTotalJawaban(sudah); // sama karena jawab = sudah dijawab
 
       if (user.role === "MASTER") {
         const userRes = await api.get("/users", {

@@ -6,6 +6,21 @@ export default function AjukanPertanyaan() {
   const { ticketing, form, setForm, handleSubmit } =
     AjukanPertanyaanController();
   const [kategori, setKategori] = useState("");
+  const [errors, setErrors] = useState("");
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!form.name.trim()) newErrors.name = "Nama wajib diisi";
+    if (!form.email.trim()) newErrors.email = "Email wajib diisi";
+    if (!form.message.trim()) newErrors.message = "Pertanyaan wajib diisi";
+    if (!form.categoryId) newErrors.categoryId = "Kategori wajib dipilih";
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
   return (
     <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-[#008BFF] to-[#3B0270]">
       <div className="max-w-6xl mx-auto shadow-2xl rounded-3xl overflow-hidden bg-white flex flex-col lg:flex-row">
@@ -139,6 +154,7 @@ export default function AjukanPertanyaan() {
                   placeholder="Nama Pengguna"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border"
                 />
+                <p className="text-red-500 text-sm">{errors.name}</p>
               </div>
 
               <div className="space-y-2">
@@ -157,6 +173,7 @@ export default function AjukanPertanyaan() {
                   placeholder="Email Aktif Pengguna"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border"
                 />
+                <p className="text-red-500 text-sm">{errors.email}</p>
               </div>
             </div>
 
@@ -176,6 +193,7 @@ export default function AjukanPertanyaan() {
                 placeholder="Tuliskan Pertanyaanmu disini..."
                 className="w-full px-4 py-3 rounded-lg bg-gray-50 border"
               />
+              <p className="text-red-500 text-sm">{errors.message}</p>
             </div>
 
             {/* 🔥 DROPDOWN */}
@@ -200,12 +218,17 @@ export default function AjukanPertanyaan() {
                   </option>
                 ))}
               </select>
+              <p className="text-red-500 text-sm">{errors.categoryId}</p>
             </div>
 
             <div className="flex justify-center">
               <button
                 type="button"
-                onClick={handleSubmit}
+                onClick={() => {
+                  if (!validate()) return;
+                  handleSubmit();
+                }}
+                alert="Pertanyaan berhasil diajukan!"
                 className="w-full md:w-auto bg-blue-900 text-[#f1f1f1] py-4 px-8 rounded-xl"
               >
                 Kirim Pertanyaan
