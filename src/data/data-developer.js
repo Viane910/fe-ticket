@@ -1,4 +1,6 @@
 import FotoViane from "../assets/team/viane.jpg";
+import FotoAnjani from "../assets/team/anjani.jpeg"
+import FotoAnisa from "../assets/team/anisa.jpeg"
 
 const DataTeam = [
   {
@@ -10,13 +12,13 @@ const DataTeam = [
   {
     name: "Anisa Al Harani",
     role: "Machine Learning Engineer",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+    image: FotoAnisa,
     bio: "Priya is a celebrated dancer specializing...",
   },
   {
     name: "Anjani Setiawati",
     role: "Data Entry",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
+    image: FotoAnjani,
     bio: "Award-winning photographer Aisha...",
   },
 ];
