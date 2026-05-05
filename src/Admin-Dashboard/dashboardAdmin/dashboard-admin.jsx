@@ -44,8 +44,8 @@ export default function DashboardAdmin() {
       />
 
       {/* Main */}
-      <main className="flex-1 flex flex-col lg:ml-[280px] transition-all duration-300">
-        <header className="h-16 flex items-center justify-between px-6 border-b bg-white">
+      <main className="flex-1 flex flex-col lg:ml-[280px] transition-all bg-[#F6F5F5] duration-300">
+        <header className="h-16 flex items-center justify-between px-6 border-b bg-[#FEFBF6]">
           <button
             className="lg:hidden"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -69,7 +69,7 @@ export default function DashboardAdmin() {
           </button>
 
           <h1 className="font-bold text-lg text-[#261CC1]">
-            Petunjuk Penggunaan Admin Dashboard
+            Dashboard Admin 
           </h1>
         </header>
         {/* Content */}

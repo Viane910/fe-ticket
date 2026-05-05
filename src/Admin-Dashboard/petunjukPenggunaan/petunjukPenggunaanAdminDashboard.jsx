@@ -46,9 +46,9 @@ export default function PetunjukPenggunaanAdminDashboard() {
         handleLogOut={handleLogOut}
       />
 
-      <main className="flex-1 flex flex-col lg:ml-[280px] transition-all duration-300">
+      <main className="flex-1 flex flex-col lg:ml-[280px] transition-all bg-[#F6F5F5] min-h-screen duration-300">
         {/* Header */}
-        <header className="h-16 flex items-center justify-between px-4 md:px-6 border-b bg-white">
+        <header className="h-16 flex items-center justify-between px-4 md:px-6 border-b bg-[#FEFBF6]">
           <button
             className="lg:hidden"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -74,7 +74,7 @@ export default function PetunjukPenggunaanAdminDashboard() {
         </header>
 
         <section className="p-4 md:p-6 space-y-6">
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-2xl font-bold text-[#32373C]">
             Kelola File PDF Petunjuk Penggunaan User
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
@@ -83,7 +83,7 @@ export default function PetunjukPenggunaanAdminDashboard() {
               onChange={(e) => setNewFile(e.target.files[0])}
               className="border p-2 rounded w-full"
             />
-
+            
             <button
               onClick={handleUpload}
               className="bg-[#261CC1] text-white px-4 py-2 rounded-md hover:bg-[#1a0f8c] w-full sm:w-auto"
@@ -91,15 +91,15 @@ export default function PetunjukPenggunaanAdminDashboard() {
               Upload File
             </button>
           </div>
-
           {/* 📋 List File */}
           <div className="bg-white shadow rounded-lg overflow-x-auto">
+            
             <table className="w-full text-sm">
-              <thead className="bg-gray-100">
+              <thead className="bg-gradient-to-r from-indigo-600 to-blue-600">
                 <tr>
-                  <th className="p-3 text-left">No</th>
-                  <th className="p-3 text-left">Nama File</th>
-                  <th className="p-3 text-left">Aksi</th>
+                  <th className="p-3 text-left text-gray-100">No</th>
+                  <th className="p-3 text-left text-gray-100">Nama File</th>
+                  <th className="p-3 text-left text-gray-100">Aksi</th>
                 </tr>
               </thead>
 
@@ -247,7 +247,7 @@ export default function PetunjukPenggunaanAdminDashboard() {
           </div>
         </section>
         <section className="p-4 m-4 ">
-          <h2 className="text-[#261CC1] text-2xl font-bold">Preview File</h2>
+          <h2 className="text-[#32373C] text-2xl font-bold">Preview File</h2>
           {previewFile && (
             <div className="mt-6">
               <h2 className="font-semibold mb-2">

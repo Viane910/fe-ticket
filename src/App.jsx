@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 // Pages
 import Home from "./home/home";
@@ -33,6 +34,9 @@ export default function App() {
   const user = getUser();
 
   return (
+    <>
+    <Toaster position="top-right" />
+
     <Routes>
       {/* PUBLIC ROUTES */}
       <Route path="/" element={<Home />} />
@@ -101,5 +105,7 @@ export default function App() {
         }
       />
     </Routes>
+    </>
+    
   );
 }

@@ -11,14 +11,14 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [sessionId, setSessionId] = useState("");
+  // const [sessionId, setSessionId] = useState("");
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
     setMessages([
       {
         id: "1",
-        text: "Halo kak! 😊 Selamat datang di BP2TL Jakarta Helpdesk. Saya siap membantu Anda dengan informasi seputar perizinan dan pelayanan BP2TL. Ada yang bisa saya bantu hari ini? 🤝",
+        text: "Halo Sobat BP2TL, Ada yang bisa aku bantu?",
         sender: "bot",
         timestamp: new Date(),
       },
@@ -41,25 +41,22 @@ export default function Chatbot() {
     setIsLoading(true);
 
     const result = await chatBotController({
-      message: text,
-      sessionId,
-    });
+  message: text,
+});
 
     if (result.success) {
-      const data = result.data;
+  const data = result.data;
 
-      setSessionId((prev) => prev || data.session_id);
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          text: data.response,
-          sender: "bot",
-          timestamp: new Date(),
-        },
-      ]);
-    } else {
+  setMessages((prev) => [
+    ...prev,
+    {
+      id: (Date.now() + 1).toString(),
+      text: data.answer || data.response || "No response",
+      sender: "bot",
+      timestamp: new Date(),
+    },
+  ]);
+} else {
       setMessages((prev) => [
         ...prev,
         {

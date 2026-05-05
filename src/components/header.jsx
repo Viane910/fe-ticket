@@ -13,6 +13,7 @@ function Header() {
         <div className="px-4 flex items-center justify-between">
           {/* LOGO */}
           <img className="h-12 w-auto" src={BP2TLImage} alt="BP2TL Logo" />
+         <h1 className="text-gray-800 text-xl lg:hidden font-bold">BP2TL Jakarta </h1>
 
           {/* DESKTOP MENU */}
           <ul className="hidden md:flex items-center gap-5">
@@ -78,6 +79,7 @@ function Header() {
   flex flex-col md:hidden
   ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
+        
         {/* HEADER */}
         <div className="flex items-center justify-end p-4 border-b">
           {/* <img className="h-10" src={BP2TLImage} alt="Logo" /> */}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LogoBP2TL from "../assets/icons/bp2tl.png";
+import api from "../API/serviceAPI";
 
 export default function AsideDashboard({
   isSidebarOpen,
@@ -8,6 +9,9 @@ export default function AsideDashboard({
   handleLogOut,
 }) {
   const [openDropdown, setOpenDropdown] = useState({});
+
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const name = user.name || "User";
 
   return (
     <>
@@ -29,7 +33,7 @@ pointer-events-auto
         <div className="h-20 flex items-center px-6 border-b gap-4">
           <div className="flex items-center gap-6">
             <img className="h-14 w-14" src={LogoBP2TL} alt="Logo BP2TL" />
-            <h1 className="text-[#f1f1f1] font-bold">BP2TL Dashboard</h1>
+            <h1 className="text-[#f1f1f1] font-bold">Halo, {name}</h1>
           </div>
 
           <button
@@ -112,9 +116,9 @@ pointer-events-auto
         <div className="p-4 text-center absolute bottom-0 w-full">
           <button
             onClick={handleLogOut}
-            className="bg-[#FF6B6B] text-white py-2 px-4 rounded-lg hover:bg-[#FF5252]"
+            className="bg-[#FFB428] text-[#32373C] font-semibold py-2 px-4 rounded-lg hover:bg-[#FFB428]/90 transition"
           >
-            Logout
+            Log Out
           </button>
         </div>
       </aside>

@@ -67,9 +67,9 @@ export default function TicketingPertanyaanBispro() {
         menu={DataMenuDashboardAdminBispro}
         handleLogOut={handleLogOut}
       />
-      <main className="flex-1 flex flex-col lg:ml-[280px] bg-gray-100 min-h-screen">
+      <main className="flex-1 flex flex-col lg:ml-[280px] bg-[#F6F5F5] min-h-screen">
         {/* HEADER */}
-        <header className="h-16 flex items-center justify-between px-3 sm:px-4 md:px-6 border-b bg-[#f1f1f1]">
+        <header className="h-16 flex items-center justify-between px-3 sm:px-4 md:px-6 border-b bg-[#FEFBF6]">
           <button
             className="lg:hidden"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}

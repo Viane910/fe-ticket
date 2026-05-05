@@ -224,11 +224,10 @@ export default function AjukanPertanyaan() {
             <div className="flex justify-center">
               <button
                 type="button"
-                onClick={() => {
-                  if (!validate()) return;
-                  handleSubmit();
-                }}
-                alert="Pertanyaan berhasil diajukan!"
+                onClick={async () => {
+  if (!validate()) return;
+  await handleSubmit();
+}}
                 className="w-full md:w-auto bg-blue-900 text-[#f1f1f1] py-4 px-8 rounded-xl"
               >
                 Kirim Pertanyaan

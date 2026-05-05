@@ -79,76 +79,68 @@ export default function KelolaPertanyaan() {
         handleLogOut={handleLogOut}
       />
 
-      <main className="flex-1 flex flex-col lg:ml-[280px] bg-gray-100 min-h-screen">
+      <main className="flex-1 flex flex-col lg:ml-[280px] bg-[#F6F5F5] min-h-screen">
         {/* HEADER */}
-        <header className="h-16 flex items-center justify-between px-3 sm:px-4 md:px-6 bg-[#f1f1f1] border-b shadow-sm">
-          {user?.role === "MASTER" && (
-            <button
-              onClick={() => setIsSidebarOpen(true)}
-              className="lg:hidden"
-            >
-              <svg
-                className="w-6 h-6 text-[#261CC1]"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          )}
+        <header className="h-16 flex items-center justify-between px-6 border-b bg-[#FEFBF6]">
+          <button
+            className="lg:hidden"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
+            <svg className="w-8 h-8 text-[#261CC1]" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" strokeWidth="2" d="M5 7h14M5 12h14M5 17h14" />
+            </svg>
+          </button>
 
-          <h1 className="font-semibold text-sm sm:text-base md:text-lg text-[#261CC1]">
+          <h1 className="font-bold text-lg text-[#261CC1]">
             Kelola Pertanyaan
           </h1>
         </header>
 
         {/* SEARCH */}
-        <div className="px-3 sm:px-4 md:px-6 flex justify-center md:justify-end">
-          <div className="w-full max-w-xs sm:max-w-sm md:w-80 h-10 mt-6 mb-2">
-            <input
-              type="search"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-white h-10 w-full px-4 rounded-full text-sm focus:outline-none shadow-sm"
-            />
+        <div className="px-4 sm:px-6 md:px-8 pt-4 sm:pt-6">
+          <div className="flex justify-end">
+            <div className="w-full sm:w-80 md:w-96">
+              <input
+                type="search"
+                placeholder="Cari nama, email, atau pertanyaan..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="bg-white h-10 sm:h-11 w-full px-4 sm:px-5 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm border border-gray-200"
+              />
+            </div>
           </div>
         </div>
 
         {/* CONTENT */}
-        <section className="p-3 sm:p-4 md:p-6">
+        <section className="p-4 sm:p-6 md:p-8">
           {/* DESKTOP TABLE */}
-          <div className="hidden md:block bg-white rounded-2xl shadow overflow-x-auto">
-            <table className="w-full text-sm min-w-[900px]">
+          <div className="hidden lg:block bg-white rounded-2xl shadow-md overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm min-w-[1000px]">
               <thead className="bg-gradient-to-r from-indigo-600 to-blue-600 text-white">
                 <tr>
-                  <th className="p-3">No</th>
-                  <th className="p-3">Nama</th>
-                  <th className="p-3">Email</th>
-                  <th className="p-3">Pertanyaan</th>
-                  <th className="p-3">Kategori</th>
-                  <th className="p-3">Status</th>
-                  <th className="p-3">Assign</th>
-                  <th className="p-3">Aksi</th>
+                  <th className="p-4 text-left font-semibold">No</th>
+                  <th className="p-4 text-left font-semibold">Nama</th>
+                  <th className="p-4 text-left font-semibold">Email</th>
+                  <th className="p-4 text-left font-semibold">Pertanyaan</th>
+                  <th className="p-4 text-left font-semibold">Kategori</th>
+                  <th className="p-4 text-left font-semibold">Status</th>
+                  <th className="p-4 text-left font-semibold">Assign</th>
+                  <th className="p-4 text-center font-semibold">Aksi</th>
                 </tr>
               </thead>
 
               <tbody>
                 {currentData.map((item, index) => (
-                  <tr key={item.id} className="border-b hover:bg-gray-50">
-                    <td className="p-3">{indexOfFirstItem + index + 1}</td>
-                    <td className="p-3">{item.name}</td>
-                    <td className="p-3 text-gray-600">{item.email}</td>
+                  <tr key={item.id} className="border-b hover:bg-gray-50 transition-colors">
+                    <td className="p-4 font-medium">{indexOfFirstItem + index + 1}</td>
+                    <td className="p-4 font-medium">{item.name}</td>
+                    <td className="p-4 text-gray-600 text-xs">{item.email}</td>
 
                     {/* MESSAGE */}
-                    <td className="p-3 max-w-xs">
+                    <td className="p-4 max-w-md">
                       <p
-                        className={`${
+                        className={`text-gray-700 ${
                           !expandedMessage[item.id] && "line-clamp-2"
                         }`}
                       >
@@ -163,7 +155,7 @@ export default function KelolaPertanyaan() {
                               [item.id]: !prev[item.id],
                             }))
                           }
-                          className="text-blue-500 text-xs mt-1"
+                          className="text-blue-600 hover:text-blue-700 text-xs mt-1 font-medium"
                         >
                           {expandedMessage[item.id]
                             ? "Sembunyikan"
@@ -173,10 +165,10 @@ export default function KelolaPertanyaan() {
                     </td>
 
                     {/* CATEGORY */}
-                    <td className="p-2">
+                    <td className="p-4">
                       {editingCategory[item.id] ? (
                         <select
-                          className="w-full min-w-[120px] max-w-[180px] border rounded px-2 py-1 text-xs sm:text-sm"
+                          className="w-full min-w-[130px] border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                           value={
                             editedData[item.id]?.categoryId ||
                             item.categoryId ||
@@ -190,7 +182,7 @@ export default function KelolaPertanyaan() {
                             )
                           }
                         >
-                          <option value="">Pilih</option>
+                          <option value="">Pilih Kategori</option>
                           {CATEGORY_OPTIONS.map((cat) => (
                             <option key={cat.id} value={cat.id}>
                               {cat.category}
@@ -205,7 +197,7 @@ export default function KelolaPertanyaan() {
                               [item.id]: true,
                             }))
                           }
-                          className="cursor-pointer text-blue-600"
+                          className="cursor-pointer text-blue-600 hover:text-blue-700 font-medium hover:underline"
                         >
                           {item.category || "Pilih"}
                         </span>
@@ -213,9 +205,9 @@ export default function KelolaPertanyaan() {
                     </td>
 
                     {/* STATUS */}
-                    <td className="p-3">
+                    <td className="p-4">
                       <span
-                        className={`px-3 py-1 text-center text-xs font-medium rounded-full inline-block ${
+                        className={`px-3 py-1.5 text-xs font-semibold rounded-full inline-block whitespace-nowrap ${
                           item.status === "Sudah Dijawab"
                             ? "bg-green-100 text-green-700"
                             : item.status === "Diproses"
@@ -230,10 +222,10 @@ export default function KelolaPertanyaan() {
                     </td>
 
                     {/* ASSIGN */}
-                    <td className="p-2">
+                    <td className="p-4">
                       {editingAssign[item.id] ? (
                         <select
-                          className="w-full min-w-[120px] max-w-[180px] border rounded px-2 py-1 text-xs sm:text-sm"
+                          className="w-full min-w-[130px] border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                           value={
                             editedData[item.id]?.assignedToId ||
                             item.assignedToId ||
@@ -243,7 +235,7 @@ export default function KelolaPertanyaan() {
                             handleAssign(item.id, e.target.value)
                           }
                         >
-                          <option value="">Pilih</option>
+                          <option value="">Pilih Admin</option>
                           {adminList.map((a) => (
                             <option key={a.id} value={a.id}>
                               {a.name || a.username}
@@ -255,7 +247,7 @@ export default function KelolaPertanyaan() {
                           onClick={() =>
                             setEditingAssign((p) => ({ ...p, [item.id]: true }))
                           }
-                          className="cursor-pointer text-blue-600"
+                          className="cursor-pointer text-blue-600 hover:text-blue-700 font-medium hover:underline"
                         >
                           {item.assignedTo || "-"}
                         </span>
@@ -263,97 +255,133 @@ export default function KelolaPertanyaan() {
                     </td>
 
                     {/* ACTION */}
-                    <td className="p-3 flex gap-2 justify-center items-center">
-                      {item.status !== "Sudah Dijawab" && (
-                        <button
-                          onClick={() => handleSave(item.id)}
-                          className="px-3 py-1 text-xs bg-green-500 text-white rounded"
-                        >
-                          Simpan
-                        </button>
-                      )}
+                    <td className="p-4">
+                      <div className="flex gap-2 justify-center items-center">
+                        {item.status !== "Sudah Dijawab" && (
+                          <button
+                            onClick={() => handleSave(item.id)}
+                            className="px-4 py-2 text-xs font-medium bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors"
+                          >
+                            Simpan
+                          </button>
+                        )}
 
-                      {user?.role === "MASTER" && (
-                        <button
-                          onClick={() => handleDelete(item.id)}
-                          className="px-3 py-1 text-xs bg-red-500 text-white rounded"
-                        >
-                          Hapus
-                        </button>
-                      )}
+                        {user?.role === "MASTER" && (
+                          <button
+                            onClick={() => handleDelete(item.id)}
+                            className="px-4 py-2 text-xs font-medium bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
+                          >
+                            Hapus
+                          </button>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 ))}
               </tbody>
-            </table>
+              </table>
+            </div>
             {/* EMPTY STATE */}
             {filteredData.length === 0 && (
-              <p className="text-center text-gray-400 py-6">
-                Data tidak ditemukan
-              </p>
+              <div className="text-center py-12">
+                <svg
+                  className="mx-auto h-12 w-12 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <p className="mt-4 text-gray-500 font-medium">
+                  Data tidak ditemukan
+                </p>
+              </div>
             )}
           </div>
 
-          {/* MOBILE CARD */}
-          <div className="md:hidden space-y-4">
-            {currentData.map((item) => (
+          {/* MOBILE & TABLET CARD */}
+          <div className="lg:hidden space-y-4">
+            {currentData.map((item, index) => (
               <div
                 key={item.id}
-                className="bg-white p-4 rounded-xl shadow space-y-3"
+                className="bg-white p-4 sm:p-5 rounded-xl shadow-md space-y-3 border border-gray-100"
               >
-                <div>
-                  <h2 className="font-semibold text-sm">{item.name}</h2>
-                  <p className="text-xs text-gray-500 break-all">
+                {/* Number Badge */}
+                <div className="flex items-start justify-between">
+                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 text-sm font-bold">
+                    {indexOfFirstItem + index + 1}
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        item.status === "Sudah Dijawab"
+                          ? "bg-green-100 text-green-700"
+                          : item.status === "Diproses"
+                            ? "bg-yellow-100 text-yellow-700"
+                            : item.status === "Belum Dikelola"
+                              ? "bg-red-100 text-red-700"
+                              : "bg-gray-100 text-gray-700"
+                      }`}
+                    >
+                      {item.status}
+                    </span>
+                  </div>
+                </div>
+                {/* User Info */}
+                <div className="border-l-4 border-indigo-500 pl-3">
+                  <h2 className="font-bold text-base text-gray-800">
+                    {item.name}
+                  </h2>
+                  <p className="text-xs text-gray-500 break-all mt-1">
                     {item.email}
                   </p>
                 </div>
 
-                <p
-                  className={`text-sm mt-2 ${
-                    !expandedMessage[item.id] && "line-clamp-2"
-                  }`}
-                >
-                  {item.message}
-                </p>
-
-                {item.message.split(" ").length > 20 && (
-                  <button
-                    onClick={() =>
-                      setExpandedMessage((prev) => ({
-                        ...prev,
-                        [item.id]: !prev[item.id],
-                      }))
-                    }
-                    className="text-blue-500 text-xs mt-1"
-                  >
-                    {expandedMessage[item.id]
-                      ? "Sembunyikan"
-                      : "Lihat selengkapnya"}
-                  </button>
-                )}
-
-                <div className="flex flex-wrap gap-2 text-xs mt-2">
-                  <span
-                    className={`px-3 py-1 rounded-full font-medium ${
-                      item.status === "Sudah Dijawab"
-                        ? "bg-green-100 text-green-700"
-                        : item.status === "Diproses"
-                          ? "bg-yellow-100 text-yellow-700"
-                          : item.status === "Belum Dikelola"
-                            ? "bg-red-100 text-red-700"
-                            : "bg-gray-100 text-gray-700"
+                {/* Message */}
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <p className="text-xs text-gray-500 font-medium mb-1">
+                    Pertanyaan:
+                  </p>
+                  <p
+                    className={`text-sm text-gray-700 ${
+                      !expandedMessage[item.id] && "line-clamp-3"
                     }`}
                   >
-                    {item.status}
-                  </span>
+                    {item.message}
+                  </p>
+
+                  {item.message.split(" ").length > 20 && (
+                    <button
+                      onClick={() =>
+                        setExpandedMessage((prev) => ({
+                          ...prev,
+                          [item.id]: !prev[item.id],
+                        }))
+                      }
+                      className="text-blue-600 hover:text-blue-700 text-xs mt-2 font-medium"
+                    >
+                      {expandedMessage[item.id]
+                        ? "Sembunyikan"
+                        : "Lihat selengkapnya"}
+                    </button>
+                  )}
                 </div>
 
-                {/* CATEGORY EDIT */}
-                <div>
-                  <label className="text-xs text-gray-500">Kategori</label>
+                {/* Category & Assign Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {/* CATEGORY EDIT */}
+                  <div className="bg-gray-50 p-3 rounded-lg">
+                  <label className="text-xs text-gray-500 font-medium block mb-1">
+                    Kategori
+                  </label>
                   {editingCategory[item.id] ? (
                     <select
-                      className="w-full mt-1 border rounded px-2 py-1 text-sm"
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       value={
                         editedData[item.id]?.categoryId || item.categoryId || ""
                       }
@@ -365,7 +393,7 @@ export default function KelolaPertanyaan() {
                         )
                       }
                     >
-                      <option value="">Pilih</option>
+                      <option value="">Pilih Kategori</option>
                       {CATEGORY_OPTIONS.map((cat) => (
                         <option key={cat.id} value={cat.id}>
                           {cat.category}
@@ -377,19 +405,21 @@ export default function KelolaPertanyaan() {
                       onClick={() =>
                         setEditingCategory((p) => ({ ...p, [item.id]: true }))
                       }
-                      className="text-blue-600 text-sm"
+                      className="text-blue-600 hover:text-blue-700 text-sm font-medium cursor-pointer hover:underline"
                     >
-                      {item.category || "Pilih"}
+                      {item.category || "Pilih Kategori"}
                     </p>
                   )}
-                </div>
+                  </div>
 
-                {/* ASSIGN EDIT */}
-                <div>
-                  <label className="text-xs text-gray-500">Assign</label>
+                  {/* ASSIGN EDIT */}
+                  <div className="bg-gray-50 p-3 rounded-lg">
+                  <label className="text-xs text-gray-500 font-medium block mb-1">
+                    Assign ke
+                  </label>
                   {editingAssign[item.id] ? (
                     <select
-                      className="w-full mt-1 border rounded px-2 py-1 text-sm"
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       value={
                         editedData[item.id]?.assignedToId ||
                         item.assignedToId ||
@@ -397,7 +427,7 @@ export default function KelolaPertanyaan() {
                       }
                       onChange={(e) => handleAssign(item.id, e.target.value)}
                     >
-                      <option value="">Pilih</option>
+                      <option value="">Pilih Admin</option>
                       {adminList.map((a) => (
                         <option key={a.id} value={a.id}>
                           {a.name || a.username}
@@ -409,19 +439,20 @@ export default function KelolaPertanyaan() {
                       onClick={() =>
                         setEditingAssign((p) => ({ ...p, [item.id]: true }))
                       }
-                      className="text-blue-600 text-sm"
+                      className="text-blue-600 hover:text-blue-700 text-sm font-medium cursor-pointer hover:underline"
                     >
-                      {item.assignedTo || "-"}
+                      {item.assignedTo || "Belum di-assign"}
                     </p>
                   )}
                 </div>
+                </div>
 
                 {/* ACTION */}
-                <div className="flex gap-2">
+                <div className="flex gap-2 pt-2">
                   {item.status !== "Sudah Dijawab" && (
                     <button
                       onClick={() => handleSave(item.id)}
-                      className="flex-1 bg-green-500 text-white py-1 rounded text-sm"
+                      className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2.5 rounded-lg text-sm font-medium transition-colors"
                     >
                       Simpan
                     </button>
@@ -430,7 +461,7 @@ export default function KelolaPertanyaan() {
                   {user?.role === "MASTER" && (
                     <button
                       onClick={() => handleDelete(item.id)}
-                      className="flex-1 bg-red-500 text-white py-1 rounded text-sm"
+                      className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2.5 rounded-lg text-sm font-medium transition-colors"
                     >
                       Hapus
                     </button>
@@ -439,34 +470,90 @@ export default function KelolaPertanyaan() {
               </div>
             ))}
             {filteredData.length === 0 && (
-              <p className="text-center text-gray-400 py-6">
-                Data tidak ditemukan
-              </p>
+              <div className="text-center py-12">
+                <svg
+                  className="mx-auto h-12 w-12 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <p className="mt-4 text-gray-500 font-medium">
+                  Data tidak ditemukan
+                </p>
+              </div>
             )}
           </div>
-          <div className="flex justify-center items-center gap-2 mt-4">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-              className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-            >
-              Prev
-            </button>
 
-            <span className="text-sm">
-              Halaman {currentPage} dari {totalPages}
-            </span>
+          {/* PAGINATION */}
+          {filteredData.length > 0 && (
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mt-6 pb-2">
+              <button
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className={`p-2 rounded-lg transition-all ${
+                  currentPage === 1
+                    ? "text-gray-300 cursor-not-allowed"
+                    : "text-indigo-600 hover:bg-indigo-50"
+                }`}
+              >
+                <svg
+                  className="w-8 h-8"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M13.729 5.575c1.304-1.074 3.27-.146 3.27 1.544v9.762c0 1.69-1.966 2.618-3.27 1.544l-5.927-4.881a2 2 0 0 1 0-3.088l5.927-4.88Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
 
-            <button
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
-              disabled={currentPage === totalPages}
-              className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-            >
-              Next
-            </button>
-          </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-gray-700">
+                  Halaman
+                </span>
+                <span className="px-3 py-1 bg-indigo-600 text-white rounded-lg font-semibold text-sm">
+                  {currentPage}
+                </span>
+                <span className="text-sm text-gray-500">dari</span>
+                <span className="text-sm font-medium text-gray-700">
+                  {totalPages}
+                </span>
+              </div>
+
+              <button
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }
+                disabled={currentPage === totalPages}
+                className={`p-2 rounded-lg transition-all ${
+                  currentPage === totalPages
+                    ? "text-gray-300 cursor-not-allowed"
+                    : "text-indigo-600 hover:bg-indigo-50"
+                }`}
+              >
+                <svg
+                  className="w-8 h-8"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.271 5.575C8.967 4.501 7 5.43 7 7.12v9.762c0 1.69 1.967 2.618 3.271 1.544l5.927-4.881a2 2 0 0 0 0-3.088l-5.927-4.88Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          )}
         </section>
       </main>
     </>

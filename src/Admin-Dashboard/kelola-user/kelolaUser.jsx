@@ -8,20 +8,16 @@ import useUserController from "./kelola.user.controller";
 export default function KelolaUser() {
   const navigate = useNavigate();
 
-  // ✅ Ambil user dari localStorage
   const user = JSON.parse(localStorage.getItem("user"));
 
-  // ✅ Guard: belum login
   if (!user) {
     return <div>Silakan login terlebih dahulu</div>;
   }
 
-  // ✅ Guard: bukan MASTER
   if (user.role !== "MASTER") {
     return <div>403 - Akses hanya untuk MASTER</div>;
   }
 
-  // ✅ Hook hanya jalan kalau lolos guard
   const {
     users,
     form,
@@ -48,9 +44,9 @@ export default function KelolaUser() {
         handleLogOut={handleLogOut}
       />
 
-      <section className="flex flex-col lg:ml-[280px] transition-all duration-300">
+      <section className="flex flex-col lg:ml-[280px] transition-all duration-300 bg-[#F6F5F5] min-h-screen">
         {/* HEADER */}
-        <header className="h-16 flex items-center justify-between px-6 border-b bg-[#f1f1f1]">
+        <header className="h-16 flex items-center justify-between px-6 border-b bg-[#FEFBF6]">
           <button
             className="lg:hidden"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -128,18 +124,20 @@ export default function KelolaUser() {
           {/* TABLE */}
           <div className="bg-white shadow rounded overflow-x-auto">
             <table className="w-full text-left">
-              <thead className="bg-gray-100">
+              <thead className="bg-gradient-to-r from-indigo-600 to-blue-600">
                 <tr>
-                  <th className="p-3">Username</th>
-                  <th className="p-3">Nama</th>
-                  <th className="p-3">Role</th>
-                  <th className="p-3">Aksi</th>
+                  <th className="p-3 text-gray-100">No</th>
+                  <th className="p-3 text-gray-100">Username</th>
+                  <th className="p-3 text-gray-100">Nama</th>
+                  <th className="p-3 text-gray-100">Role</th>
+                  <th className="p-3 text-gray-100">Aksi</th>
                 </tr>
               </thead>
 
               <tbody>
-                {users.map((u) => (
+                {users.map((u, index) => (
                   <tr key={u.id} className="border-t">
+                    <td className="p-3">{index + 1}</td>
                     <td className="p-3">{u.username}</td>
                     <td className="p-3">{u.name}</td>
                     <td className="p-3">{u.role}</td>
