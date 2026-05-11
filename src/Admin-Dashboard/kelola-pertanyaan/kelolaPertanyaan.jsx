@@ -275,8 +275,28 @@ export default function KelolaPertanyaan() {
                           </button>
                         )}
                       </div>
+                      <td className="p-4 text-xs text-gray-500 whitespace-nowrap">
+  {item.createAt
+    ? new Date(item.createAt).toLocaleString("id-ID", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      })
+    : "-"}
+</td>
+
+<td className="p-4 text-xs text-gray-500 whitespace-nowrap">
+  {item.answeredAt
+    ? new Date(item.answeredAt).toLocaleString("id-ID", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      })
+    : "-"}
+</td>
                     </td>
+
                   </tr>
+                  
+                  
                 ))}
               </tbody>
               </table>
@@ -301,6 +321,7 @@ export default function KelolaPertanyaan() {
                   Data tidak ditemukan
                 </p>
               </div>
+              
             )}
           </div>
 

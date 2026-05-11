@@ -18,7 +18,7 @@ export default function Chatbot() {
     setMessages([
       {
         id: "1",
-        text: "Halo Sobat BP2TL, Ada yang bisa aku bantu?",
+        text: "Halo sobat BP2TL, ada yang bisa saya bantu?",
         sender: "bot",
         timestamp: new Date(),
       },
@@ -61,7 +61,7 @@ export default function Chatbot() {
         ...prev,
         {
           id: (Date.now() + 1).toString(),
-          text: "Server error 😢 coba lagi ya",
+          text: "Server error coba lagi ya",
           sender: "bot",
           timestamp: new Date(),
         },

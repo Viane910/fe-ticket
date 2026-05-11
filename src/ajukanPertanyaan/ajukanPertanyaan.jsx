@@ -173,6 +173,9 @@ export default function AjukanPertanyaan() {
                   placeholder="Email Aktif Pengguna"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border"
                 />
+                <p className="text-red-500 text-sm">
+                  *Masukkan email yang aktif untuk kami hubungi.
+                </p>
                 <p className="text-red-500 text-sm">{errors.email}</p>
               </div>
             </div>
